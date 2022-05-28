@@ -27,7 +27,7 @@ const Main = () => {
     return (
         <NavigationContainer>
             {
-                !!user ?
+                !!user.uid ?
                 <Drawer.Navigator initialRouteName="Home" screenOptions={appHeaderOptions}>
                     <Drawer.Screen name="Home" component={Home} />
                     <Drawer.Screen name="Profile" component={Profile} />
