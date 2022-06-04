@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { View, Pressable } from 'react-native';
 import { Button, Card, TextInput, Paragraph } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { loginUser } from '../../firebase/auth';
 import { setUser } from '../../redux/authSlice';
@@ -41,6 +42,11 @@ const SignUp = ({navigation}) => {
                     photoURL: userCredential.user.photoURL,
                 }
                 dispatch(setUser(user));
+                try {
+                    AsyncStorage.setItem("user", JSON.stringify(user));
+                } catch(error) {
+                    console.log(error);
+                }
             })
             .catch(error => console.log(error.code + " "+ error.message))
     }
