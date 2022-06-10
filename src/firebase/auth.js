@@ -3,6 +3,7 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
+    updateProfile,
     signOut
 } from "firebase/auth";
 
@@ -15,8 +16,10 @@ const registerUser = (email, password) => createUserWithEmailAndPassword(auth, e
 
 const loginUser = (email, password) => signInWithEmailAndPassword(auth, email, password);
 
+const updateUserProfile = userDetail => updateProfile(auth.currentUser, userDetail);
+
 const logout = () => signOut(auth);
 
 export {
-    registerUser, loginUser, onAuthStateChanged, logout
+    registerUser, loginUser, onAuthStateChanged, updateUserProfile, logout
 }
